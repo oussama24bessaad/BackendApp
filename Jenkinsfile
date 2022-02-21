@@ -26,7 +26,7 @@ pipeline{
         stage("build"){
             
             steps{
-                sh 'npm install'
+                sh 'npm install -g npm@8.5.1'
                 sh 'docker --version'
             }
         }
