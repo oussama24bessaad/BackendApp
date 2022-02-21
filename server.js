@@ -7,13 +7,13 @@ require('dotenv').config()
 app.use(express.json())
 
 
-//mongoose.connect(process.env.MONGO_URI,(err)=>(
-//  err ? console.log(err) : console.log('database connected')
-//)) 
+mongoose.connect(process.env.MONGO_URI,(err)=>(
+ err ? console.log(err) : console.log('database connected')
+)) 
 
 //mongoose setup
-const connectDB = require('./helpers/connectDB');
-connectDB();
+// const connectDB = require('./helpers/connectDB');
+// connectDB();
 
 const User = require('./models/userModel')
 
