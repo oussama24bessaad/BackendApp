@@ -9,19 +9,21 @@ pipeline{
 
             
         
-        stage('SonarQube analysis') {
-                    
+        stage("SonarQube analysis"){
             steps{
                 script {
-               scannerHome = tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                    withSonarQubeEnv('sonarqube-server') { 
-        
-                       sh "${scannerHome}/bin/sonar-scanner"
-                     
-                    }
-                }         
+                    scannerHome = tool 'SonarQube Scanner 4.6.2.2472'
+                }
+                    withSonarQubeEnv("SonarQube Scanner") {
+                    sh "${scannerHome}/bin/sonar-scanner \
+                        -Dsonar.projectKey=Myapp \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://localhost:9000 \
+                        -Dsonar.login=admin \
+                        -Dsonar.password=admin007"
+                    } 
+                }
             }
-        }
         
         stage("build"){
             
